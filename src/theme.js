@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles'
 // color design tokens
 // #666666 #141b2d #4cceac #db4f4a #6870fa
 //箭头函数函数体为什么最外层是()?? 去掉试一下！！！
+//将项目中需要的各种颜色代码都通过tokens维护，在其它文件中不直接写颜色代码
 export const tokens = (mode) => ({
     ...(mode === 'dark'
         ? {
@@ -209,7 +210,7 @@ export const useMode = () => {
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () =>
-                setMode((prev) => (prev === "light" ? "drak" : "light")),
+                setMode((prev) => (prev === "light" ? "dark" : "light")),
         }),
         []
     );

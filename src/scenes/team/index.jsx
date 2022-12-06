@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
@@ -65,7 +65,7 @@ const Team = () => {
               }
             borderRadius="4px"
           >
-            {/* 为什么这里不用Button组件？？ Button组件中的字体均为大写，去掉该设置比较麻烦？？ */}
+            {/* 为什么这里不用Button组件？？--- Button组件中的字体均为大写，去掉该设置比较麻烦？？ 此处也不是按钮，只是样式设置相似 */}
               {access === "admin" && <AdminPanelSettingsOutlinedIcon/>}
               {access === "manager" && <SecurityOutlinedIcon />}
               {access === "user" && <LockOpenOutlinedIcon />}
@@ -81,7 +81,7 @@ const Team = () => {
         <Header title="TEAM" subtitle="Managing the Team Members"/>
         {/* 
         <DataGrid> 外层元素必须要有高度/height属性
-        75vh：vh是什么单位？
+        75vh：vh是什么单位？ --viewport height vh：视窗高度的百分比（ 1vh 代表视窗的高度为 1%）
         */}
         <Box 
           m="40px 0 0 0"
@@ -98,8 +98,8 @@ const Team = () => {
             "& .MuiDataGrid-root": {
               border: "none",
             },
-            //使用该元素上的不同class属性都能生效(复选框)
-            "& .MuiButtonBase-root": {
+            //使用该元素上的不同class属性都能生效(复选框) 但是用.MuiButtonBase-root会影响到其它组件中的Button，所以使用复选框
+            "& .MuiCheckbox-root": {
               color: `${colors.greenAccent[200]} !important`,
             },
             //加上之后效果与示例不同？？？

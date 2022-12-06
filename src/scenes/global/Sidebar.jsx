@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import { useState } from "react";
 
+
 // 封装Item菜单项，实现路由链接、
 const Item = ({ title, icon, to, selected, setSelected }) => {
   const theme = useTheme();
@@ -61,7 +62,7 @@ const Sidebar = () => {
           {/* LOGO AND MENU ICON */}
           {/* 这里能否将 MenuItem替换为其它组件？？  */}
           {/* 有没有更好的折叠菜单时显示MenuOut图标的方案 */}
-          <MenuItem icon={ isCollapsed ? <MenuOutlinedIcon/> : undefined} onClick={() => setIsCollapsed(!isCollapsed)} style={{color: colors.grey[100]}}>
+          <MenuItem icon={ isCollapsed ? <MenuOutlinedIcon/> : undefined} onClick={() => setIsCollapsed(!isCollapsed)} style={{margin: "10px 0 20px 0",color: colors.grey[100]}}>
             {/* 如果只用<Box>部分(不设置<MenuItem>上的图标属性)，当点击MenuOut图标后菜单隐藏， MenuOut图标不会显示，只能显示一点文字部分*/}
             {!isCollapsed && (
               <Box
@@ -78,27 +79,38 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
-          <Box mb="25px">
-            <Box display="flex" justifyContent="center" alignItems="center">
-              {/* 把头像图片放在src/assets下，图片加载失败 ，why???*/}
-              <img 
-                width="100px"
-                height="100px"
-                src={`../../assets/user.png`}
-              />
-            </Box>
-            <Box textAlign="center">
-              <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }}>Ed Roh</Typography>
-              <Typography variant="h5" color={colors.greenAccent[500]}>VP Fancy Admin</Typography>
-            </Box>
+          { !isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center">
+                {/* 把头像图片放在src/assets下，图片加载失败 ，why???
+                  src={`../../assets/user.png`} 不可以
+                  src={require('../../assets/user.png') 这种可以(通过require引入)
+                  import avatar from '../../assets/user.png' src={avatar} 这种也可以(通过import引入)
 
-            
-          </Box>
+                  在 React 项目中，assets 文件夹通常放在 public 文件夹中，防止webpack打包时出现不显示图片的问题
+                  src={`/assets/user.png`}或者src={`../../assets/user.png`} 都可以显示图像
+                  src={`/assets/user.png`} 以 public 文件夹为根目录
+                  src={`../../assets/user.png`} 为什么这个可以？找到了src目录下的assets?
+                */}
+                <img 
+                  width="100px"
+                  height="100px"
+                  src={`/assets/user.png`}
+                />
+              </Box>
+              <Box textAlign="center">
+                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }}>Ed Roh</Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]}>VP Fancy Admin</Typography>
+              </Box>
+
+              
+            </Box>
+          )}
 
 
 
           {/* 菜单子项用MenuItem和Item的区别: Item是自己封装的组件 */}
-          <Box paddingLeft="10%">
+          <Box paddingLeft={ isCollapsed ? undefined : "10%"}>
             <Item title="Dashboard" to="/" icon={<HomeOutlinedIcon />}  selected={selected} setSelected={setSelected}/>
             <Typography variant="h6" color={colors.primary[300]} sx={{ m: "15px 0 5px 20px"}}>Data</Typography>
             <Item title="Mange Team" to="/team" icon={<PeopleOutlinedIcon />} selected={selected} setSelected={setSelected}/>

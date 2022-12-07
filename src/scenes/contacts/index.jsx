@@ -79,8 +79,8 @@ const Contacts = () => {
             "& .MuiDataGrid-virtualScroller": {
               backgroundColor: colors.primary[400],
             },
-            // 为什么不设置这个，不显示工具箱？？即color和背景色相同
-            "& .MuiDataGrid-toolbarContainer": {
+            // 为什么不设置这个，不显示工具箱？？即color和背景色相同。注意样式选择器的写法.MuiDataGrid-toolbarContainer .MuiButton-text
+            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
               color: colors.grey[100],
             },
           }}

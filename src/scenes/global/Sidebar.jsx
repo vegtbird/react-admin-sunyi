@@ -1,4 +1,4 @@
-import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -93,6 +93,7 @@ const Sidebar = () => {
                   src={`../../assets/user.png`} 为什么这个可以？找到了src目录下的assets?
                 */}
                 <img 
+                  alt="profile-user"
                   width="100px"
                   height="100px"
                   src={`/assets/user.png`}
@@ -121,10 +122,10 @@ const Sidebar = () => {
             <Item title="Calendar" to="/calendar" icon={<CalendarTodayOutlinedIcon />} selected={selected} setSelected={setSelected}/>
             <Item title="FAQ Page" to="/faq" icon={<HelpOutlineOutlinedIcon />} selected={selected} setSelected={setSelected}/>
             <Typography variant="h6" color={colors.primary[300]} sx={{ m: "15px 0 5px 20px"}}>Charts</Typography>
-            <Item title="Bar Chart" to="/bar" icon={<PersonOutlinedIcon />} selected={selected} setSelected={setSelected}/>
-            <Item title="Pie Chart" to="/pie" icon={<CalendarTodayOutlinedIcon />} selected={selected} setSelected={setSelected}/>
-            <Item title="Line Chart" to="/line" icon={<HelpOutlineOutlinedIcon />} selected={selected} setSelected={setSelected}/>
-            <Item title="Geography Chart" to="/geography" icon={<HelpOutlineOutlinedIcon />} selected={selected} setSelected={setSelected}/>
+            <Item title="Bar Chart" to="/bar" icon={<BarChartOutlinedIcon />} selected={selected} setSelected={setSelected}/>
+            <Item title="Pie Chart" to="/pie" icon={<PieChartOutlineOutlinedIcon />} selected={selected} setSelected={setSelected}/>
+            <Item title="Line Chart" to="/line" icon={<TimelineOutlinedIcon />} selected={selected} setSelected={setSelected}/>
+            <Item title="Geography Chart" to="/geography" icon={<MapOutlinedIcon />} selected={selected} setSelected={setSelected}/>
           </Box>
         </Menu>
       </ProSidebar>

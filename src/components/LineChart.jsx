@@ -54,21 +54,22 @@ const LineChart = ({ isDashboard = false }) => {
         }}
         yFormat=" >-.2f"
         curve="catmullRom" // 把折线变成曲线
-        axisTop={null}
-        axisRight={null}
+        // axisTop={null}
+        // axisRight={null}
         axisBottom={{
             orient: 'bottom',
             tickSize: 0, // 隐藏Y轴下方的刻度线
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'transportation', // chaged
+            legend: isDashboard ? undefined : 'transportation', // changed
             legendOffset: 36,
             legendPosition: 'middle'
         }}
         axisLeft={{
             orient: 'left',
-            tickSize: 5,
-            tickPadding: 3,
+            tickValues: 5, // added，更改Y轴刻度线数量
+            tickSize: 3,
+            tickPadding: 5,
             tickRotation: 0,
             legend: isDashboard ? undefined : 'count', // chaged
             legendOffset: -40,
@@ -82,7 +83,7 @@ const LineChart = ({ isDashboard = false }) => {
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
-        useMesh={true}
+        useMesh={true} //当前把鼠标悬浮到数组点上会显示label，去掉这句可隐藏label。未找到到底是哪里起作用？？
         legends={[
             {
                 anchor: 'bottom-right',

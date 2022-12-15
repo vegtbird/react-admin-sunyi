@@ -10,6 +10,8 @@ import StatBox from '../../components/StatBox'
 import LineChart from "../../components/LineChart";
 import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
+import { mockTransactions } from "../../data/mockData";
+import ProgressCircle from '../../components/ProgressCircle';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -117,8 +119,115 @@ const Dashboard = () => {
             
           </Box>
 
+          <Box
+            gridColumn="span 4"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+            overflow="auto"
+          >
+            {/* 下面Box设置和不设置flex的区别？？静态样式看着一样 */}
+            <Box p="15px" borderBottom={`4px solid ${colors.primary[500]}`} colors={colors.grey[100]}>
+                <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>Recent Transactions</Typography>
+            </Box>
+            { mockTransactions.map((transaction, i) => (
+                    // 列表遍历必须要设置key属性
+                    <Box 
+                        key={`${transaction.txId}-${i}`}
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        p="15px" 
+                        borderBottom={`4px solid ${colors.primary[500]}`} 
+                    >
+                        <Box>
+                            <Typography variant="h5" fontWeight="600" color={colors.greenAccent[500]}>{transaction.txId}</Typography>
+                            {/* Typography variant默认值为？？ 设置为h6后样式有变化 */}
+                            <Typography color={colors.grey[100]}>{transaction.user}</Typography>
+                        </Box>
+                        {/* Box标签体内容直接嵌套字符串和嵌套Typography的区别？？ 首选直接嵌套字符串？？*/}
+                        <Box>
+                            <Typography color={colors.grey[100]}>{transaction.date}</Typography>
+                        </Box>
+                        <Box>
+                            <Typography 
+                                sx={{
+                                    backgroundColor:colors.greenAccent[500],
+                                    p:"5px 10px",
+                                    borderRadius:"4px"
+                                }}
+                            >
+                            {`$${transaction.cost}` }
+                            </Typography>
+                        </Box>
+                    </Box>
+                )
+            )
+            }
+
 
             
+          </Box>
+
+          {/* ROW 3 */}
+          <Box
+            gridColumn="span 4"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+            p="30px"
+          >
+            <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>Campaign</Typography>
+            {/*  flexDirection="column"将主轴修改为纵轴，并让子元素垂直显示。如果想让子元素水平居中，需设置alignItems属性为center */}
+            <Box 
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                mt="25px"
+            >
+                <ProgressCircle size="125"/>
+                <Typography variant="h5" color={colors.greenAccent[500]} sx={{mt:"15px"}}>$48,352 revenue generated</Typography>
+                <Typography>Includes extra misc expenditures and costs</Typography>
+            </Box>
+            
+            
+          </Box>
+
+          <Box
+            gridColumn="span 4"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+          >
+            <Typography 
+                variant="h5" 
+                fontWeight="600" 
+                sx={{ p:"30px 30px 0 30px" }}
+            >
+                Sales Quantity
+            </Typography>
+            <Box height="250px" mt="-20px">
+                <BarChart isDashboard={true}/>
+            </Box>  
+          </Box>
+
+          <Box
+            gridColumn="span 4"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+            p="30px"
+          >
+            <Typography 
+                variant="h5" 
+                fontWeight="600" 
+                sx={{ mb:"15px" }}
+            >
+                Geography Based Traffic
+            </Typography>
+            <Box height="200px">
+                <GeographyChart isDashboard={true}/>
+            </Box>  
+          </Box>
+
+
+
 
         </Box>  
     </Box>

@@ -47,8 +47,8 @@ const GeographyChart = ({ isDashboard = false }) => {
         unknownColor="#666666"
         label="properties.name"
         valueFormat=".2s"
-        projectionScale={150} //地图部分放大比例
-        projectionTranslation={[0.5, 0.5] } //地图显示部分左右、上下平移
+        projectionScale={ isDashboard ? 40: 150} //地图部分放大比例
+        projectionTranslation={ isDashboard ? [0.5, 0.6] : [0.5, 0.5] } //地图显示部分左右、上下平移
         projectionRotation={[ 0, 0, 0 ]}
         // enableGraticule={true} //隐藏背景网格/交叉线
         // graticuleLineColor="#dddddd"
